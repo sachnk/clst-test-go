@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/clst-test-go/option"
 )
 
-func TestAccountPnlSummaryGet(t *testing.T) {
+func TestAccountPNLSummaryGet(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -25,7 +25,7 @@ func TestAccountPnlSummaryGet(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 	)
-	_, err := client.Accounts.PnlSummary.Get(context.TODO(), "x")
+	_, err := client.Accounts.PNLSummary.Get(context.TODO(), "x")
 	if err != nil {
 		var apierr *clsttest.Error
 		if errors.As(err, &apierr) {
