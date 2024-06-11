@@ -101,7 +101,7 @@ func TestEntityGetPortfolioMargin(t *testing.T) {
 	}
 }
 
-func TestEntityGetRegtMargin(t *testing.T) {
+func TestEntityGetRegTMargin(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -113,7 +113,7 @@ func TestEntityGetRegtMargin(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 	)
-	_, err := client.Entities.GetRegtMargin(context.TODO(), "x")
+	_, err := client.Entities.GetRegTMargin(context.TODO(), "x")
 	if err != nil {
 		var apierr *clsttest.Error
 		if errors.As(err, &apierr) {
