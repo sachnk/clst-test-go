@@ -41,7 +41,7 @@ func TestUserAgentHeader(t *testing.T) {
 		"REPLACE_ME",
 		clsttest.InstrumentGetParams{},
 	)
-	if userAgent != fmt.Sprintf("ClstTest/Go %s", internal.PackageVersion) {
+	if userAgent != fmt.Sprintf("Clearstreet/Go %s", internal.PackageVersion) {
 		t.Errorf("Expected User-Agent to be correct, but got: %#v", userAgent)
 	}
 }
