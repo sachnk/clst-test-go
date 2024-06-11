@@ -3,7 +3,7 @@
 Response Types:
 
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#Entity">Entity</a>
-- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#PnlSummary">PnlSummary</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#PNLSummary">PNLSummary</a>
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#PortfolioMargin">PortfolioMargin</a>
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#RegtMargin">RegtMargin</a>
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#EntityListResponse">EntityListResponse</a>
@@ -12,7 +12,7 @@ Methods:
 
 - <code title="get /entities/{entity_id}">client.Entities.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#EntityService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, entityID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#Entity">Entity</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /entities">client.Entities.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#EntityService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#EntityListResponse">EntityListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
-- <code title="get /entities/{entity_id}/pnl-summary">client.Entities.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#EntityService.GetPnlSummary">GetPnlSummary</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, entityID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#PnlSummary">PnlSummary</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /entities/{entity_id}/pnl-summary">client.Entities.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#EntityService.GetPNLSummary">GetPNLSummary</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, entityID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#PNLSummary">PNLSummary</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /entities/{entity_id}/portfolio-margin">client.Entities.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#EntityService.GetPortfolioMargin">GetPortfolioMargin</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, entityID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#PortfolioMargin">PortfolioMargin</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /entities/{entity_id}/regt-margin">client.Entities.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#EntityService.GetRegtMargin">GetRegtMargin</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, entityID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#RegtMargin">RegtMargin</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
@@ -40,7 +40,7 @@ Response Types:
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#Account">Account</a>
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#LocateOrder">LocateOrder</a>
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#Order">Order</a>
-- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#PnlSummary">PnlSummary</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#PNLSummary">PNLSummary</a>
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#Position">Position</a>
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#Trade">Trade</a>
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountListResponse">AccountListResponse</a>
@@ -122,21 +122,21 @@ Methods:
 
 - <code title="get /accounts/{account_id}/easy-borrows">client.Accounts.EasyBorrows.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountEasyBorrowService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountEasyBorrowListResponse">AccountEasyBorrowListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
-## PnlSummary
+## PNLSummary
 
 Methods:
 
-- <code title="get /accounts/{account_id}/pnl-summary">client.Accounts.PnlSummary.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountPnlSummaryService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#PnlSummary">PnlSummary</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /accounts/{account_id}/pnl-summary">client.Accounts.PNLSummary.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountPNLSummaryService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#PNLSummary">PNLSummary</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
-## PnlDetails
+## PNLDetails
 
 Response Types:
 
-- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountPnlDetailListResponse">AccountPnlDetailListResponse</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountPNLDetailListResponse">AccountPNLDetailListResponse</a>
 
 Methods:
 
-- <code title="get /accounts/{account_id}/pnl-details">client.Accounts.PnlDetails.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountPnlDetailService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountPnlDetailListResponse">AccountPnlDetailListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /accounts/{account_id}/pnl-details">client.Accounts.PNLDetails.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountPNLDetailService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountPNLDetailListResponse">AccountPNLDetailListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 # Instruments
 

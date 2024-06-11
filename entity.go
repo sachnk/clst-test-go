@@ -55,7 +55,7 @@ func (r *EntityService) List(ctx context.Context, opts ...option.RequestOption) 
 }
 
 // Get PNL summary for all accounts in an entity.
-func (r *EntityService) GetPnlSummary(ctx context.Context, entityID string, opts ...option.RequestOption) (res *PnlSummary, err error) {
+func (r *EntityService) GetPNLSummary(ctx context.Context, entityID string, opts ...option.RequestOption) (res *PNLSummary, err error) {
 	opts = append(r.Options[:], opts...)
 	if entityID == "" {
 		err = errors.New("missing required entity_id parameter")
@@ -115,9 +115,9 @@ func (r entityJSON) RawJSON() string {
 	return r.raw
 }
 
-type PnlSummary struct {
+type PNLSummary struct {
 	// Profit and loss from intraday trading activities.
-	DayPnl float64 `json:"day_pnl,required"`
+	DayPNL float64 `json:"day_pnl,required"`
 	// Entity ID for the legal entity.
 	EntityID string `json:"entity_id,required"`
 	// Net value of instruments held in the portfolio.
@@ -129,11 +129,11 @@ type PnlSummary struct {
 	// Market value net of long and short market values.
 	NetMarketValue float64 `json:"net_market_value,required"`
 	// `total_pnl + total_fees`
-	NetPnl float64 `json:"net_pnl,required"`
+	NetPNL float64 `json:"net_pnl,required"`
 	// Profit and loss from previous trading date.
-	OvernightPnl float64 `json:"overnight_pnl,required"`
+	OvernightPNL float64 `json:"overnight_pnl,required"`
 	// Profit and loss realized from position closing trading activity
-	RealizedPnl float64 `json:"realized_pnl,required"`
+	RealizedPNL float64 `json:"realized_pnl,required"`
 	// Market value of securities positioned short.
 	ShortMarketValue float64 `json:"short_market_value,required"`
 	// Net value of instruments held in the portfolio at the start of a trading day.
@@ -149,23 +149,23 @@ type PnlSummary struct {
 	// Total fees incurred from trading activities.
 	TotalFees float64 `json:"total_fees,required"`
 	// `realized_pnl + unrealized_pnl`
-	TotalPnl float64 `json:"total_pnl,required"`
+	TotalPNL float64 `json:"total_pnl,required"`
 	// Profit and loss from market changes.
-	UnrealizedPnl float64        `json:"unrealized_pnl,required"`
+	UnrealizedPNL float64        `json:"unrealized_pnl,required"`
 	JSON          pnlSummaryJSON `json:"-"`
 }
 
-// pnlSummaryJSON contains the JSON metadata for the struct [PnlSummary]
+// pnlSummaryJSON contains the JSON metadata for the struct [PNLSummary]
 type pnlSummaryJSON struct {
-	DayPnl              apijson.Field
+	DayPNL              apijson.Field
 	EntityID            apijson.Field
 	Equity              apijson.Field
 	GrossMarketValue    apijson.Field
 	LongMarketValue     apijson.Field
 	NetMarketValue      apijson.Field
-	NetPnl              apijson.Field
-	OvernightPnl        apijson.Field
-	RealizedPnl         apijson.Field
+	NetPNL              apijson.Field
+	OvernightPNL        apijson.Field
+	RealizedPNL         apijson.Field
 	ShortMarketValue    apijson.Field
 	SodEquity           apijson.Field
 	SodGrossMarketValue apijson.Field
@@ -173,13 +173,13 @@ type pnlSummaryJSON struct {
 	SodShortMarketValue apijson.Field
 	Timestamp           apijson.Field
 	TotalFees           apijson.Field
-	TotalPnl            apijson.Field
-	UnrealizedPnl       apijson.Field
+	TotalPNL            apijson.Field
+	UnrealizedPNL       apijson.Field
 	raw                 string
 	ExtraFields         map[string]apijson.Field
 }
 
-func (r *PnlSummary) UnmarshalJSON(data []byte) (err error) {
+func (r *PNLSummary) UnmarshalJSON(data []byte) (err error) {
 	return apijson.UnmarshalRoot(data, r)
 }
 
