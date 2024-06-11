@@ -9,6 +9,7 @@ import (
 	"net/http"
 
 	"github.com/stainless-sdks/clst-test-go/internal/apijson"
+	"github.com/stainless-sdks/clst-test-go/internal/param"
 	"github.com/stainless-sdks/clst-test-go/internal/requestconfig"
 	"github.com/stainless-sdks/clst-test-go/option"
 )
@@ -20,8 +21,7 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewEntityService] method instead.
 type EntityService struct {
-	Options               []option.RequestOption
-	RegTMarginSimulations *EntityRegTMarginSimulationService
+	Options []option.RequestOption
 }
 
 // NewEntityService generates a new service that applies the given options to each
@@ -30,7 +30,6 @@ type EntityService struct {
 func NewEntityService(opts ...option.RequestOption) (r *EntityService) {
 	r = &EntityService{}
 	r.Options = opts
-	r.RegTMarginSimulations = NewEntityRegTMarginSimulationService(opts...)
 	return
 }
 
@@ -51,6 +50,24 @@ func (r *EntityService) List(ctx context.Context, opts ...option.RequestOption) 
 	opts = append(r.Options[:], opts...)
 	path := "entities"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
+	return
+}
+
+// Simulate Reg-T margin calculation for a given hypothetical set of prices and/or
+// trades. This is useful for understanding the impact of price fluctuations or
+// trades on margin requirements. Once a simulation is created, it remains
+// available for 48-hours, after which it will automatically be deleted.
+//
+// Simulations created through the API are visible in the Studio UI under the Risk
+// & Margin section, after enabling the "Risk Simulations" toggle.
+func (r *EntityService) NewRegTMarginSimulation(ctx context.Context, entityID string, body EntityNewRegTMarginSimulationParams, opts ...option.RequestOption) (res *EntityNewRegTMarginSimulationResponse, err error) {
+	opts = append(r.Options[:], opts...)
+	if entityID == "" {
+		err = errors.New("missing required entity_id parameter")
+		return
+	}
+	path := fmt.Sprintf("entities/%s/regt-margin-simulations", entityID)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return
 }
 
@@ -86,6 +103,23 @@ func (r *EntityService) GetRegTMargin(ctx context.Context, entityID string, opts
 		return
 	}
 	path := fmt.Sprintf("entities/%s/regt-margin", entityID)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
+	return
+}
+
+// Get a Reg-T margin simluation that was previously created. Note, simulations are
+// automatically deleted after 48-hours.
+func (r *EntityService) GetRegTMarginSimulation(ctx context.Context, entityID string, simulationID string, opts ...option.RequestOption) (res *RegTMarginSimulation, err error) {
+	opts = append(r.Options[:], opts...)
+	if entityID == "" {
+		err = errors.New("missing required entity_id parameter")
+		return
+	}
+	if simulationID == "" {
+		err = errors.New("missing required simulation_id parameter")
+		return
+	}
+	path := fmt.Sprintf("entities/%s/regt-margin-simulations/%s", entityID, simulationID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }
@@ -581,6 +615,40 @@ func (r RegTMarginGroupsMembersAssetClass) IsKnown() bool {
 	return false
 }
 
+type RegTMarginSimulation struct {
+	// The margin calculation after applying simulated trades.
+	After RegTMargin `json:"after,required"`
+	// The margin calculation before applying simulated trades.
+	Before RegTMargin `json:"before,required"`
+	// Timestamp of when this simulation was created.
+	CreatedAt int64 `json:"created_at,required"`
+	// Name of this simulation that you provided when creating it.
+	Name string `json:"name,required"`
+	// Unique ID for a simulation.
+	SimulationID string                   `json:"simulation_id,required" format:"uuid"`
+	JSON         regTMarginSimulationJSON `json:"-"`
+}
+
+// regTMarginSimulationJSON contains the JSON metadata for the struct
+// [RegTMarginSimulation]
+type regTMarginSimulationJSON struct {
+	After        apijson.Field
+	Before       apijson.Field
+	CreatedAt    apijson.Field
+	Name         apijson.Field
+	SimulationID apijson.Field
+	raw          string
+	ExtraFields  map[string]apijson.Field
+}
+
+func (r *RegTMarginSimulation) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r regTMarginSimulationJSON) RawJSON() string {
+	return r.raw
+}
+
 type EntityListResponse struct {
 	Data []Entity               `json:"data"`
 	JSON entityListResponseJSON `json:"-"`
@@ -600,4 +668,123 @@ func (r *EntityListResponse) UnmarshalJSON(data []byte) (err error) {
 
 func (r entityListResponseJSON) RawJSON() string {
 	return r.raw
+}
+
+type EntityNewRegTMarginSimulationResponse struct {
+	// Unique ID for a simulation.
+	SimulationID string                                    `json:"simulation_id,required" format:"uuid"`
+	JSON         entityNewRegTMarginSimulationResponseJSON `json:"-"`
+}
+
+// entityNewRegTMarginSimulationResponseJSON contains the JSON metadata for the
+// struct [EntityNewRegTMarginSimulationResponse]
+type entityNewRegTMarginSimulationResponseJSON struct {
+	SimulationID apijson.Field
+	raw          string
+	ExtraFields  map[string]apijson.Field
+}
+
+func (r *EntityNewRegTMarginSimulationResponse) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r entityNewRegTMarginSimulationResponseJSON) RawJSON() string {
+	return r.raw
+}
+
+type EntityNewRegTMarginSimulationParams struct {
+	// A name for this simulation for reference.
+	Name param.Field[string] `json:"name,required"`
+	// If true, the simulation will ignore any existing positions and balances in the
+	// account. Set to true if you want to simulate from a clean slate, i.e. an empty
+	// account.
+	IgnoreExisting param.Field[bool] `json:"ignore_existing"`
+	// List of prices to use in the simulation, i.e. fair-market-values you specify for
+	// each symbol. If this is not provided, current market prices will be used, if
+	// they are available.
+	Prices param.Field[[]EntityNewRegTMarginSimulationParamsPrice] `json:"prices"`
+	// List of hypothetical trades to include in the simulation, if any.
+	Trades param.Field[[]EntityNewRegTMarginSimulationParamsTrade] `json:"trades"`
+}
+
+func (r EntityNewRegTMarginSimulationParams) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+type EntityNewRegTMarginSimulationParamsPrice struct {
+	// The price to use in the simulation.
+	Price param.Field[string] `json:"price,required"`
+	// The symbol for the instrument.
+	Symbol param.Field[string] `json:"symbol,required"`
+	// Denotes the format of the provided `symbol` field.
+	SymbolFormat param.Field[EntityNewRegTMarginSimulationParamsPricesSymbolFormat] `json:"symbol_format"`
+}
+
+func (r EntityNewRegTMarginSimulationParamsPrice) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+// Denotes the format of the provided `symbol` field.
+type EntityNewRegTMarginSimulationParamsPricesSymbolFormat string
+
+const (
+	EntityNewRegTMarginSimulationParamsPricesSymbolFormatCms EntityNewRegTMarginSimulationParamsPricesSymbolFormat = "cms"
+	EntityNewRegTMarginSimulationParamsPricesSymbolFormatOsi EntityNewRegTMarginSimulationParamsPricesSymbolFormat = "osi"
+)
+
+func (r EntityNewRegTMarginSimulationParamsPricesSymbolFormat) IsKnown() bool {
+	switch r {
+	case EntityNewRegTMarginSimulationParamsPricesSymbolFormatCms, EntityNewRegTMarginSimulationParamsPricesSymbolFormatOsi:
+		return true
+	}
+	return false
+}
+
+type EntityNewRegTMarginSimulationParamsTrade struct {
+	// The price of the simulated trade.
+	Price param.Field[string] `json:"price,required"`
+	// The quantity of the simulated trade.
+	Quantity param.Field[string] `json:"quantity,required"`
+	// The side of the simulated trade.
+	Side param.Field[EntityNewRegTMarginSimulationParamsTradesSide] `json:"side,required"`
+	// The symbol for the instrument.
+	Symbol param.Field[string] `json:"symbol,required"`
+	// Denotes the format of the provided `symbol` field.
+	SymbolFormat param.Field[EntityNewRegTMarginSimulationParamsTradesSymbolFormat] `json:"symbol_format"`
+}
+
+func (r EntityNewRegTMarginSimulationParamsTrade) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+// The side of the simulated trade.
+type EntityNewRegTMarginSimulationParamsTradesSide string
+
+const (
+	EntityNewRegTMarginSimulationParamsTradesSideBuy  EntityNewRegTMarginSimulationParamsTradesSide = "buy"
+	EntityNewRegTMarginSimulationParamsTradesSideSell EntityNewRegTMarginSimulationParamsTradesSide = "sell"
+)
+
+func (r EntityNewRegTMarginSimulationParamsTradesSide) IsKnown() bool {
+	switch r {
+	case EntityNewRegTMarginSimulationParamsTradesSideBuy, EntityNewRegTMarginSimulationParamsTradesSideSell:
+		return true
+	}
+	return false
+}
+
+// Denotes the format of the provided `symbol` field.
+type EntityNewRegTMarginSimulationParamsTradesSymbolFormat string
+
+const (
+	EntityNewRegTMarginSimulationParamsTradesSymbolFormatCms EntityNewRegTMarginSimulationParamsTradesSymbolFormat = "cms"
+	EntityNewRegTMarginSimulationParamsTradesSymbolFormatOsi EntityNewRegTMarginSimulationParamsTradesSymbolFormat = "osi"
+)
+
+func (r EntityNewRegTMarginSimulationParamsTradesSymbolFormat) IsKnown() bool {
+	switch r {
+	case EntityNewRegTMarginSimulationParamsTradesSymbolFormatCms, EntityNewRegTMarginSimulationParamsTradesSymbolFormatOsi:
+		return true
+	}
+	return false
 }
