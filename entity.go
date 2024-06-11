@@ -21,7 +21,7 @@ import (
 // the [NewEntityService] method instead.
 type EntityService struct {
 	Options               []option.RequestOption
-	RegtMarginSimulations *EntityRegtMarginSimulationService
+	RegTMarginSimulations *EntityRegTMarginSimulationService
 }
 
 // NewEntityService generates a new service that applies the given options to each
@@ -30,7 +30,7 @@ type EntityService struct {
 func NewEntityService(opts ...option.RequestOption) (r *EntityService) {
 	r = &EntityService{}
 	r.Options = opts
-	r.RegtMarginSimulations = NewEntityRegtMarginSimulationService(opts...)
+	r.RegTMarginSimulations = NewEntityRegTMarginSimulationService(opts...)
 	return
 }
 
@@ -79,7 +79,7 @@ func (r *EntityService) GetPortfolioMargin(ctx context.Context, entityID string,
 }
 
 // Get the latest Reg-T margin calculation for the given entity
-func (r *EntityService) GetRegtMargin(ctx context.Context, entityID string, opts ...option.RequestOption) (res *RegtMargin, err error) {
+func (r *EntityService) GetRegTMargin(ctx context.Context, entityID string, opts ...option.RequestOption) (res *RegTMargin, err error) {
 	opts = append(r.Options[:], opts...)
 	if entityID == "" {
 		err = errors.New("missing required entity_id parameter")
@@ -411,7 +411,7 @@ func (r PortfolioMarginGroupsMembersAssetClass) IsKnown() bool {
 	return false
 }
 
-type RegtMargin struct {
+type RegTMargin struct {
 	// The remaining amount of start_of_day_buying_power that captures any day-trading
 	// activity.
 	DayTradeBuyingPower float64 `json:"day_trade_buying_power,required"`
@@ -420,7 +420,7 @@ type RegtMargin struct {
 	// Margin requirements based on regulatory rules.
 	ExchangeRequirement float64 `json:"exchange_requirement,required"`
 	// Reg-T margin groups
-	Groups []RegtMarginGroup `json:"groups,required"`
+	Groups []RegTMarginGroup `json:"groups,required"`
 	// The margin amount by taking the difference between total equity and the house
 	// requirement. A negative number reflects a house margin deficit.
 	HouseExcess float64 `json:"house_excess,required"`
@@ -447,11 +447,11 @@ type RegtMargin struct {
 	// The margin amount by taking the difference between total equity and the exchange
 	// requirement. A negative number reflects an regulatory margin deficit.
 	ExchangeExcess float64        `json:"exchange_excess"`
-	JSON           regtMarginJSON `json:"-"`
+	JSON           regTMarginJSON `json:"-"`
 }
 
-// regtMarginJSON contains the JSON metadata for the struct [RegtMargin]
-type regtMarginJSON struct {
+// regTMarginJSON contains the JSON metadata for the struct [RegTMargin]
+type regTMarginJSON struct {
 	DayTradeBuyingPower  apijson.Field
 	EffectiveRequirement apijson.Field
 	ExchangeRequirement  apijson.Field
@@ -470,15 +470,15 @@ type regtMarginJSON struct {
 	ExtraFields          map[string]apijson.Field
 }
 
-func (r *RegtMargin) UnmarshalJSON(data []byte) (err error) {
+func (r *RegTMargin) UnmarshalJSON(data []byte) (err error) {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-func (r regtMarginJSON) RawJSON() string {
+func (r regTMarginJSON) RawJSON() string {
 	return r.raw
 }
 
-type RegtMarginGroup struct {
+type RegTMarginGroup struct {
 	// The enforced margin requirement in effect for the symbol group.
 	EffectiveRequirement float64 `json:"effective_requirement,required"`
 	// Margin requirements based on regulatory rules for the symbol group.
@@ -498,14 +498,14 @@ type RegtMarginGroup struct {
 	// net_market_value of all positions. Formula: `(market_value / net_market_value)`
 	MarketValuePercent float64 `json:"market_value_percent,required"`
 	// A list of securities that comprise this group.
-	Members []RegtMarginGroupsMember `json:"members,required"`
+	Members []RegTMarginGroupsMember `json:"members,required"`
 	// Unique name of the group, typically the symbol of the underlier.
 	Name string              `json:"name,required"`
-	JSON regtMarginGroupJSON `json:"-"`
+	JSON regTMarginGroupJSON `json:"-"`
 }
 
-// regtMarginGroupJSON contains the JSON metadata for the struct [RegtMarginGroup]
-type regtMarginGroupJSON struct {
+// regTMarginGroupJSON contains the JSON metadata for the struct [RegTMarginGroup]
+type regTMarginGroupJSON struct {
 	EffectiveRequirement      apijson.Field
 	ExchangeRequirement       apijson.Field
 	HouseRequirement          apijson.Field
@@ -519,17 +519,17 @@ type regtMarginGroupJSON struct {
 	ExtraFields               map[string]apijson.Field
 }
 
-func (r *RegtMarginGroup) UnmarshalJSON(data []byte) (err error) {
+func (r *RegTMarginGroup) UnmarshalJSON(data []byte) (err error) {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-func (r regtMarginGroupJSON) RawJSON() string {
+func (r regTMarginGroupJSON) RawJSON() string {
 	return r.raw
 }
 
-type RegtMarginGroupsMember struct {
+type RegTMarginGroupsMember struct {
 	// The asset class of the symbol.
-	AssetClass RegtMarginGroupsMembersAssetClass `json:"asset_class,required"`
+	AssetClass RegTMarginGroupsMembersAssetClass `json:"asset_class,required"`
 	// Market value of the instrument.
 	MarketValue float64 `json:"market_value,required"`
 	// The percentage market value of the instrument in terms of the total
@@ -540,12 +540,12 @@ type RegtMarginGroupsMember struct {
 	Quantity string `json:"quantity,required"`
 	// The symbol for the instrument.
 	Symbol string                     `json:"symbol,required"`
-	JSON   regtMarginGroupsMemberJSON `json:"-"`
+	JSON   regTMarginGroupsMemberJSON `json:"-"`
 }
 
-// regtMarginGroupsMemberJSON contains the JSON metadata for the struct
-// [RegtMarginGroupsMember]
-type regtMarginGroupsMemberJSON struct {
+// regTMarginGroupsMemberJSON contains the JSON metadata for the struct
+// [RegTMarginGroupsMember]
+type regTMarginGroupsMemberJSON struct {
 	AssetClass         apijson.Field
 	MarketValue        apijson.Field
 	MarketValuePercent apijson.Field
@@ -555,27 +555,27 @@ type regtMarginGroupsMemberJSON struct {
 	ExtraFields        map[string]apijson.Field
 }
 
-func (r *RegtMarginGroupsMember) UnmarshalJSON(data []byte) (err error) {
+func (r *RegTMarginGroupsMember) UnmarshalJSON(data []byte) (err error) {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-func (r regtMarginGroupsMemberJSON) RawJSON() string {
+func (r regTMarginGroupsMemberJSON) RawJSON() string {
 	return r.raw
 }
 
 // The asset class of the symbol.
-type RegtMarginGroupsMembersAssetClass string
+type RegTMarginGroupsMembersAssetClass string
 
 const (
-	RegtMarginGroupsMembersAssetClassOther  RegtMarginGroupsMembersAssetClass = "other"
-	RegtMarginGroupsMembersAssetClassEquity RegtMarginGroupsMembersAssetClass = "equity"
-	RegtMarginGroupsMembersAssetClassOption RegtMarginGroupsMembersAssetClass = "option"
-	RegtMarginGroupsMembersAssetClassDebt   RegtMarginGroupsMembersAssetClass = "debt"
+	RegTMarginGroupsMembersAssetClassOther  RegTMarginGroupsMembersAssetClass = "other"
+	RegTMarginGroupsMembersAssetClassEquity RegTMarginGroupsMembersAssetClass = "equity"
+	RegTMarginGroupsMembersAssetClassOption RegTMarginGroupsMembersAssetClass = "option"
+	RegTMarginGroupsMembersAssetClassDebt   RegTMarginGroupsMembersAssetClass = "debt"
 )
 
-func (r RegtMarginGroupsMembersAssetClass) IsKnown() bool {
+func (r RegTMarginGroupsMembersAssetClass) IsKnown() bool {
 	switch r {
-	case RegtMarginGroupsMembersAssetClassOther, RegtMarginGroupsMembersAssetClassEquity, RegtMarginGroupsMembersAssetClassOption, RegtMarginGroupsMembersAssetClassDebt:
+	case RegTMarginGroupsMembersAssetClassOther, RegTMarginGroupsMembersAssetClassEquity, RegTMarginGroupsMembersAssetClassOption, RegTMarginGroupsMembersAssetClassDebt:
 		return true
 	}
 	return false

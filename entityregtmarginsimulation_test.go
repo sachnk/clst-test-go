@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/clst-test-go/option"
 )
 
-func TestEntityRegtMarginSimulationNewWithOptionalParams(t *testing.T) {
+func TestEntityRegTMarginSimulationNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -25,41 +25,41 @@ func TestEntityRegtMarginSimulationNewWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 	)
-	_, err := client.Entities.RegtMarginSimulations.New(
+	_, err := client.Entities.RegTMarginSimulations.New(
 		context.TODO(),
 		"x",
-		clsttest.EntityRegtMarginSimulationNewParams{
+		clsttest.EntityRegTMarginSimulationNewParams{
 			Name:           clsttest.F("string"),
 			IgnoreExisting: clsttest.F(true),
-			Prices: clsttest.F([]clsttest.EntityRegtMarginSimulationNewParamsPrice{{
+			Prices: clsttest.F([]clsttest.EntityRegTMarginSimulationNewParamsPrice{{
 				Symbol:       clsttest.F("AAPL"),
-				SymbolFormat: clsttest.F(clsttest.EntityRegtMarginSimulationNewParamsPricesSymbolFormatCms),
+				SymbolFormat: clsttest.F(clsttest.EntityRegTMarginSimulationNewParamsPricesSymbolFormatCms),
 				Price:        clsttest.F("x"),
 			}, {
 				Symbol:       clsttest.F("AAPL"),
-				SymbolFormat: clsttest.F(clsttest.EntityRegtMarginSimulationNewParamsPricesSymbolFormatCms),
+				SymbolFormat: clsttest.F(clsttest.EntityRegTMarginSimulationNewParamsPricesSymbolFormatCms),
 				Price:        clsttest.F("x"),
 			}, {
 				Symbol:       clsttest.F("AAPL"),
-				SymbolFormat: clsttest.F(clsttest.EntityRegtMarginSimulationNewParamsPricesSymbolFormatCms),
+				SymbolFormat: clsttest.F(clsttest.EntityRegTMarginSimulationNewParamsPricesSymbolFormatCms),
 				Price:        clsttest.F("x"),
 			}}),
-			Trades: clsttest.F([]clsttest.EntityRegtMarginSimulationNewParamsTrade{{
+			Trades: clsttest.F([]clsttest.EntityRegTMarginSimulationNewParamsTrade{{
 				Symbol:       clsttest.F("AAPL"),
-				SymbolFormat: clsttest.F(clsttest.EntityRegtMarginSimulationNewParamsTradesSymbolFormatCms),
-				Side:         clsttest.F(clsttest.EntityRegtMarginSimulationNewParamsTradesSideBuy),
+				SymbolFormat: clsttest.F(clsttest.EntityRegTMarginSimulationNewParamsTradesSymbolFormatCms),
+				Side:         clsttest.F(clsttest.EntityRegTMarginSimulationNewParamsTradesSideBuy),
 				Quantity:     clsttest.F("x"),
 				Price:        clsttest.F("x"),
 			}, {
 				Symbol:       clsttest.F("AAPL"),
-				SymbolFormat: clsttest.F(clsttest.EntityRegtMarginSimulationNewParamsTradesSymbolFormatCms),
-				Side:         clsttest.F(clsttest.EntityRegtMarginSimulationNewParamsTradesSideBuy),
+				SymbolFormat: clsttest.F(clsttest.EntityRegTMarginSimulationNewParamsTradesSymbolFormatCms),
+				Side:         clsttest.F(clsttest.EntityRegTMarginSimulationNewParamsTradesSideBuy),
 				Quantity:     clsttest.F("x"),
 				Price:        clsttest.F("x"),
 			}, {
 				Symbol:       clsttest.F("AAPL"),
-				SymbolFormat: clsttest.F(clsttest.EntityRegtMarginSimulationNewParamsTradesSymbolFormatCms),
-				Side:         clsttest.F(clsttest.EntityRegtMarginSimulationNewParamsTradesSideBuy),
+				SymbolFormat: clsttest.F(clsttest.EntityRegTMarginSimulationNewParamsTradesSymbolFormatCms),
+				Side:         clsttest.F(clsttest.EntityRegTMarginSimulationNewParamsTradesSideBuy),
 				Quantity:     clsttest.F("x"),
 				Price:        clsttest.F("x"),
 			}}),
@@ -74,7 +74,7 @@ func TestEntityRegtMarginSimulationNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestEntityRegtMarginSimulationGet(t *testing.T) {
+func TestEntityRegTMarginSimulationGet(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -86,7 +86,7 @@ func TestEntityRegtMarginSimulationGet(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 	)
-	_, err := client.Entities.RegtMarginSimulations.Get(
+	_, err := client.Entities.RegTMarginSimulations.Get(
 		context.TODO(),
 		"x",
 		"6460030d-8ed4-19d3-818e-e87b36e90005",
