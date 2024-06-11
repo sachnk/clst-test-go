@@ -14,15 +14,13 @@ import (
 )
 
 // EntityService contains methods and other services that help with interacting
-// with the clst-test API.
+// with the clearstreet API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewEntityService] method instead.
 type EntityService struct {
 	Options               []option.RequestOption
-	RegtMargin            *EntityRegtMarginService
-	PortfolioMargin       *EntityPortfolioMarginService
 	RegtMarginSimulations *EntityRegtMarginSimulationService
 }
 
@@ -32,8 +30,6 @@ type EntityService struct {
 func NewEntityService(opts ...option.RequestOption) (r *EntityService) {
 	r = &EntityService{}
 	r.Options = opts
-	r.RegtMargin = NewEntityRegtMarginService(opts...)
-	r.PortfolioMargin = NewEntityPortfolioMarginService(opts...)
 	r.RegtMarginSimulations = NewEntityRegtMarginSimulationService(opts...)
 	return
 }
@@ -59,13 +55,37 @@ func (r *EntityService) List(ctx context.Context, opts ...option.RequestOption) 
 }
 
 // Get PNL summary for all accounts in an entity.
-func (r *EntityService) PnlSummary(ctx context.Context, entityID string, opts ...option.RequestOption) (res *PnlSummary, err error) {
+func (r *EntityService) GetPnlSummary(ctx context.Context, entityID string, opts ...option.RequestOption) (res *PnlSummary, err error) {
 	opts = append(r.Options[:], opts...)
 	if entityID == "" {
 		err = errors.New("missing required entity_id parameter")
 		return
 	}
 	path := fmt.Sprintf("entities/%s/pnl-summary", entityID)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
+	return
+}
+
+// Get latest portfolio margin calculation for the given entity
+func (r *EntityService) GetPortfolioMargin(ctx context.Context, entityID string, opts ...option.RequestOption) (res *PortfolioMargin, err error) {
+	opts = append(r.Options[:], opts...)
+	if entityID == "" {
+		err = errors.New("missing required entity_id parameter")
+		return
+	}
+	path := fmt.Sprintf("entities/%s/portfolio-margin", entityID)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
+	return
+}
+
+// Get the latest Reg-T margin calculation for the given entity
+func (r *EntityService) GetRegtMargin(ctx context.Context, entityID string, opts ...option.RequestOption) (res *RegtMargin, err error) {
+	opts = append(r.Options[:], opts...)
+	if entityID == "" {
+		err = errors.New("missing required entity_id parameter")
+		return
+	}
+	path := fmt.Sprintf("entities/%s/regt-margin", entityID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }

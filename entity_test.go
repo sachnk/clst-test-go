@@ -57,7 +57,7 @@ func TestEntityList(t *testing.T) {
 	}
 }
 
-func TestEntityPnlSummary(t *testing.T) {
+func TestEntityGetPnlSummary(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -69,7 +69,51 @@ func TestEntityPnlSummary(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 	)
-	_, err := client.Entities.PnlSummary(context.TODO(), "x")
+	_, err := client.Entities.GetPnlSummary(context.TODO(), "x")
+	if err != nil {
+		var apierr *clsttest.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestEntityGetPortfolioMargin(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := clsttest.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithBearerToken("My Bearer Token"),
+	)
+	_, err := client.Entities.GetPortfolioMargin(context.TODO(), "x")
+	if err != nil {
+		var apierr *clsttest.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestEntityGetRegtMargin(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := clsttest.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithBearerToken("My Bearer Token"),
+	)
+	_, err := client.Entities.GetRegtMargin(context.TODO(), "x")
 	if err != nil {
 		var apierr *clsttest.Error
 		if errors.As(err, &apierr) {

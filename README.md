@@ -1,8 +1,8 @@
-# Clst Test Go API Library
+# Clearstreet Go API Library
 
 <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go"><img src="https://pkg.go.dev/badge/github.com/stainless-sdks/clst-test-go.svg" alt="Go Reference"></a>
 
-The Clst Test Go library provides convenient access to [the Clst Test REST
+The Clearstreet Go library provides convenient access to [the Clearstreet REST
 API](https://docs.clst-test.com) from applications written in Go. The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainlessapi.com/).
