@@ -28,7 +28,11 @@ Methods:
 Response Types:
 
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#Account">Account</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#LocateOrder">LocateOrder</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#Order">Order</a>
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go/shared">shared</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go/shared#PNLSummary">PNLSummary</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#Position">Position</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#Trade">Trade</a>
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountListResponse">AccountListResponse</a>
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountNewOrdersInBulkResponse">AccountNewOrdersInBulkResponse</a>
 - <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountGetPNLDetailsResponse">AccountGetPNLDetailsResponse</a>
@@ -40,6 +44,68 @@ Methods:
 - <code title="post /accounts/{account_id}/bulk-orders">client.Accounts.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountService.NewOrdersInBulk">NewOrdersInBulk</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountNewOrdersInBulkParams">AccountNewOrdersInBulkParams</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountNewOrdersInBulkResponse">AccountNewOrdersInBulkResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /accounts/{account_id}/pnl-details">client.Accounts.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountService.GetPNLDetails">GetPNLDetails</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountGetPNLDetailsResponse">AccountGetPNLDetailsResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /accounts/{account_id}/pnl-summary">client.Accounts.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountService.GetPNLSummary">GetPNLSummary</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go/shared">shared</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go/shared#PNLSummary">PNLSummary</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+## Orders
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderNewResponse">AccountOrderNewResponse</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderGetResponse">AccountOrderGetResponse</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderListResponse">AccountOrderListResponse</a>
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderDeleteResponse">AccountOrderDeleteResponse</a>
+
+Methods:
+
+- <code title="post /accounts/{account_id}/orders">client.Accounts.Orders.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderNewParams">AccountOrderNewParams</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderNewResponse">AccountOrderNewResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /accounts/{account_id}/orders/{order_id}">client.Accounts.Orders.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, orderID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderGetResponse">AccountOrderGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /accounts/{account_id}/orders">client.Accounts.Orders.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderListParams">AccountOrderListParams</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderListResponse">AccountOrderListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="delete /accounts/{account_id}/orders">client.Accounts.Orders.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderService.Delete">Delete</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderDeleteParams">AccountOrderDeleteParams</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderDeleteResponse">AccountOrderDeleteResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="delete /accounts/{account_id}/orders/{order_id}">client.Accounts.Orders.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountOrderService.Cancel">Cancel</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, orderID <a href="https://pkg.go.dev/builtin#string">string</a>) <a href="https://pkg.go.dev/builtin#error">error</a></code>
+
+## Trades
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountTradeListResponse">AccountTradeListResponse</a>
+
+Methods:
+
+- <code title="get /accounts/{account_id}/trades/{trade_id}">client.Accounts.Trades.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountTradeService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, tradeID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#Trade">Trade</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /accounts/{account_id}/trades">client.Accounts.Trades.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountTradeService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountTradeListParams">AccountTradeListParams</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountTradeListResponse">AccountTradeListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+## Positions
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountPositionListResponse">AccountPositionListResponse</a>
+
+Methods:
+
+- <code title="get /accounts/{account_id}/positions/{symbol}">client.Accounts.Positions.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountPositionService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, symbol <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#Position">Position</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /accounts/{account_id}/positions">client.Accounts.Positions.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountPositionService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountPositionListParams">AccountPositionListParams</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountPositionListResponse">AccountPositionListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+## LocateOrders
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountLocateOrderListResponse">AccountLocateOrderListResponse</a>
+
+Methods:
+
+- <code title="post /accounts/{account_id}/locate-orders">client.Accounts.LocateOrders.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountLocateOrderService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountLocateOrderNewParams">AccountLocateOrderNewParams</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#LocateOrder">LocateOrder</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /accounts/{account_id}/locate-orders/{locate_order_id}">client.Accounts.LocateOrders.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountLocateOrderService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, locateOrderID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#LocateOrder">LocateOrder</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="patch /accounts/{account_id}/locate-orders/{locate_order_id}">client.Accounts.LocateOrders.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountLocateOrderService.Update">Update</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, locateOrderID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountLocateOrderUpdateParams">AccountLocateOrderUpdateParams</a>) <a href="https://pkg.go.dev/builtin#error">error</a></code>
+- <code title="get /accounts/{account_id}/locate-orders">client.Accounts.LocateOrders.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountLocateOrderService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountLocateOrderListResponse">AccountLocateOrderListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+## EasyBorrows
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountEasyBorrowListResponse">AccountEasyBorrowListResponse</a>
+
+Methods:
+
+- <code title="get /accounts/{account_id}/easy-borrows">client.Accounts.EasyBorrows.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountEasyBorrowService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go">clsttest</a>.<a href="https://pkg.go.dev/github.com/stainless-sdks/clst-test-go#AccountEasyBorrowListResponse">AccountEasyBorrowListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 # Instruments
 
