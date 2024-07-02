@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/stainless-sdks/clst-test-go/internal/requestconfig"
-	"github.com/stainless-sdks/clst-test-go/option"
+	"github.com/sachnk/clst-test-go/internal/requestconfig"
+	"github.com/sachnk/clst-test-go/option"
 )
 
 // Client creates a struct with services and top level methods that help with

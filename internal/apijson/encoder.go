@@ -12,7 +12,7 @@ import (
 
 	"github.com/tidwall/sjson"
 
-	"github.com/stainless-sdks/clst-test-go/internal/param"
+	"github.com/sachnk/clst-test-go/internal/param"
 )
 
 var encoders sync.Map // map[encoderEntry]encoderFunc

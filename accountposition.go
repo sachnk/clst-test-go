@@ -9,11 +9,11 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/stainless-sdks/clst-test-go/internal/apijson"
-	"github.com/stainless-sdks/clst-test-go/internal/apiquery"
-	"github.com/stainless-sdks/clst-test-go/internal/param"
-	"github.com/stainless-sdks/clst-test-go/internal/requestconfig"
-	"github.com/stainless-sdks/clst-test-go/option"
+	"github.com/sachnk/clst-test-go/internal/apijson"
+	"github.com/sachnk/clst-test-go/internal/apiquery"
+	"github.com/sachnk/clst-test-go/internal/param"
+	"github.com/sachnk/clst-test-go/internal/requestconfig"
+	"github.com/sachnk/clst-test-go/option"
 )
 
 // AccountPositionService contains methods and other services that help with
