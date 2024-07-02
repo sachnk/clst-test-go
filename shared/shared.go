@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/stainless-sdks/clst-test-go/internal/apijson"
+	"github.com/sachnk/clst-test-go/internal/apijson"
 )
 
 type PNLSummary struct {

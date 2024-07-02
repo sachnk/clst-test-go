@@ -7,9 +7,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stainless-sdks/clst-test-go"
-	"github.com/stainless-sdks/clst-test-go/internal/testutil"
-	"github.com/stainless-sdks/clst-test-go/option"
+	"github.com/sachnk/clst-test-go"
+	"github.com/sachnk/clst-test-go/internal/testutil"
+	"github.com/sachnk/clst-test-go/option"
 )
 
 func TestUsage(t *testing.T) {

@@ -8,9 +8,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/stainless-sdks/clst-test-go/internal/apijson"
-	"github.com/stainless-sdks/clst-test-go/internal/requestconfig"
-	"github.com/stainless-sdks/clst-test-go/option"
+	"github.com/sachnk/clst-test-go/internal/apijson"
+	"github.com/sachnk/clst-test-go/internal/requestconfig"
+	"github.com/sachnk/clst-test-go/option"
 )
 
 // AccountEasyBorrowService contains methods and other services that help with

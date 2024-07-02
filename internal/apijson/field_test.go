@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stainless-sdks/clst-test-go/internal/param"
+	"github.com/sachnk/clst-test-go/internal/param"
 )
 
 type Struct struct {
