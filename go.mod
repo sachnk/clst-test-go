@@ -1,4 +1,4 @@
-module github.com/stainless-sdks/clst-test-go
+module github.com/sachnk/clst-test-go
 
 go 1.19
 

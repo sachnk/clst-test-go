@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stainless-sdks/clst-test-go"
-	"github.com/stainless-sdks/clst-test-go/internal"
-	"github.com/stainless-sdks/clst-test-go/option"
+	"github.com/sachnk/clst-test-go"
+	"github.com/sachnk/clst-test-go/internal"
+	"github.com/sachnk/clst-test-go/option"
 )
 
 type closureTransport struct {

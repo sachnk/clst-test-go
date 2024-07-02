@@ -3,8 +3,8 @@
 package clsttest
 
 import (
-	"github.com/stainless-sdks/clst-test-go/internal/apierror"
-	"github.com/stainless-sdks/clst-test-go/shared"
+	"github.com/sachnk/clst-test-go/internal/apierror"
+	"github.com/sachnk/clst-test-go/shared"
 )
 
 type Error = apierror.Error

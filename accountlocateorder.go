@@ -8,10 +8,10 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/stainless-sdks/clst-test-go/internal/apijson"
-	"github.com/stainless-sdks/clst-test-go/internal/param"
-	"github.com/stainless-sdks/clst-test-go/internal/requestconfig"
-	"github.com/stainless-sdks/clst-test-go/option"
+	"github.com/sachnk/clst-test-go/internal/apijson"
+	"github.com/sachnk/clst-test-go/internal/param"
+	"github.com/sachnk/clst-test-go/internal/requestconfig"
+	"github.com/sachnk/clst-test-go/option"
 )
 
 // AccountLocateOrderService contains methods and other services that help with
